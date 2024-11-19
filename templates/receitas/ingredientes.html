@@ -1,0 +1,17 @@
+{% extends 'receitas/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 style="text-align: center; margin-top: 80px;"> Selecione os ingredientes que tem em casa:</h1>
+
+<form name="buscar_i" action="{% url 'buscar_i' %}" method="POST" style="margin-left: 40px;">
+    {% csrf_token %}
+    {% for ingrediente in options %}
+    <input type="checkbox" name="ingredientes" value="{{ingrediente.id}}">
+    <label>{{ingrediente.nome}}</label>
+    <br>
+    {% endfor %}
+    <button type="submit">Buscar</button>
+</form>
+
+{% endblock %}

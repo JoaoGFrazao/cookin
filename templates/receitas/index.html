@@ -1,0 +1,35 @@
+{% extends 'receitas/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="search-section">
+        <h2>Encontre Receitas</h2>
+        <form id="searchForm" action="{% url 'buscar' %}">
+            <input type="text" id="searchInput" name="buscar" placeholder="Digite uma Receita">
+            <button type="submit">Buscar</button>
+        </form>
+    </section>
+
+
+    <ul class="receitas-lista">
+        {% if cards %}
+        {% for receitas in cards %}
+        <li class="receita-card">
+            <a href="{% url 'receita' receitas.id %}">
+                <img src="{{receitas.foto.url}}" alt={{receitas.nome}} class="receita-img">
+                </a>
+                <h2 class="receita-nome">{{receitas.nome}}</h2>
+        
+        </li>
+        {% endfor %}
+        
+    </ul>
+
+        
+        {% else %}
+        {% endif %}
+    </ul>
+
+    {% endblock %}
+
+
+

@@ -1,0 +1,19 @@
+{% extends 'receitas/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="recipe-details">
+        <h2>{{ info.nome }} {% if usuario %} por {{usuario.first_name}} {{usuario.last_name}} {% endif %}</h2>
+        <img src="{{ info.foto.url }}" alt="Imagem da receita">
+        <p><strong>Ingredientes:</strong></p>
+        <ul>
+            {% for item in ingredientes_com_quantidade %}
+                <li> {{item.quantidade}} <I>de</I> {{ item.ingrediente.nome }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Modo de Preparo:</strong></p>
+        <p>{{ info.preparo }}</p>
+    </section>
+
+    {% endblock %}
+

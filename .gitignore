@@ -1,0 +1,12 @@
+.env
+venv/
+*.pyc
+__pycache__/
+receitas/__pycache__/
+receitas/migrations/
+usuarios/__pycache__/
+usuarios/migrations/
+setup/__pycache__/
+client_secret.json
+media/fotos/
+db.sqlite3

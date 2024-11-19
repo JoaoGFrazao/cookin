@@ -1,0 +1,33 @@
+{% extends 'receitas/base.html' %}
+{% load static %}
+{% block content %}
+
+<section style="margin-left: 5em; margin-top: 30px">
+    <form action="{% url 'compartilhe_receita' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            {% for field in form.visible_fields %}
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="{{ field.id_for_label }}" style="color:#D9D9D9; margin-bottom: 5px;">
+                        {{ field.label }}
+                    </label>
+                        {{ field }}
+                </div>
+              
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <a class="btn btn-success" href="{% url 'add_ingrediente' %}" style="margin-bottom: 15px; margin-top: 15px;">Adicione um novo Ingrediente</a>
+        <div>
+            <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Adicionar Quantidades aos Ingredientes</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

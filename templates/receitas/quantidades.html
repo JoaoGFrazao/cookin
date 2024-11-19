@@ -1,0 +1,23 @@
+{% extends 'receitas/base.html' %}
+{% load static %}
+{% block content %}
+
+<section style="margin-left: 5em; margin-top: 30px">
+    <form action="{% url 'add_quantidade' receita_id %}" method="post">
+    {% csrf_token %}
+        <div class="row">
+            {% for ingrediente_receita in ingredientes %}
+            <div class="form-group" style="margin-bottom: 10px;">
+                <label for="{{ ingrediente_receita.ingrediente.nome }}" style="color:#000000; margin-bottom: 5px;">
+                    {{ingrediente_receita.ingrediente.nome}} :
+                </label>
+                <input type="text" name="quantidade_{{ ingrediente_receita.ingrediente.id }}" id="quantidade_{{ ingrediente_receita.ingrediente.id }}" placeholder="Digite a quantidade">
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Adicionar ao site</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
